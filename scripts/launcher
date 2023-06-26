@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if pgrep -x "yofi" > /dev/null
+then
+    killall yofi
+else
+    yofi
+fi
