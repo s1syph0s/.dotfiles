@@ -1,3 +1,4 @@
-#.Dotfiles
+.Dotfiles
+---------
 
 My attempt to backup my dotfiles.
