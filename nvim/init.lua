@@ -242,6 +242,7 @@ vim.o.expandtab = true
 
 vim.o.swapfile = false
 vim.o.backup = false
+
 -- Save undo history
 vim.o.undofile = true
 
