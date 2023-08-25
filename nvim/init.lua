@@ -232,9 +232,16 @@ vim.o.mouse = 'a'
 --  See `:help 'clipboard'`
 vim.o.clipboard = 'unnamedplus'
 
--- Enable break indent
+-- Indent stuff
 vim.o.breakindent = true
+vim.o.smartindent = true
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
 
+vim.o.swapfile = false
+vim.o.backup = false
 -- Save undo history
 vim.o.undofile = true
 
@@ -254,6 +261,9 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
+
+vim.o.wrap = false
+
 
 -- [[ Basic Keymaps ]]
 
