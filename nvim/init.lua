@@ -482,6 +482,7 @@ local servers = {
   -- rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+  texlab = {},
 
   lua_ls = {
     Lua = {
