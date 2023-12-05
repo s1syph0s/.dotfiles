@@ -17,6 +17,10 @@ return {
 		local codelldb_path = extension_path .. "adapter/codelldb"
 		local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
 
+		if vim.fn.has('macunix') then
+			liblldb_path = extension_path .. "lldb/lib/liblldb.dylib"
+		end
+
 
 		local opts = {
 			tools = { -- rust-tools options
