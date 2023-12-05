@@ -287,7 +287,7 @@ vim.o.wrap = false
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-vim.keymap.set({ 'n', 'v', 'i'}, '<C-y>', '<Nop>', { silent = true })
+vim.keymap.set({ 'n', 'v', 'i' }, '<C-y>', '<Nop>', { silent = true })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -479,7 +479,7 @@ local servers = {
   -- clangd = {},
   -- gopls = {},
   -- pyright = {},
-  -- rust_analyzer = {},
+  rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
   texlab = {},
@@ -506,16 +506,33 @@ mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
 }
 
-mason_lspconfig.setup_handlers {
+local util = require("util")
+local handlers = {
   function(server_name)
     require('lspconfig')[server_name].setup {
       capabilities = capabilities,
-      on_attach = on_attach,
+      on_attach = util.on_attach,
       settings = servers[server_name],
       filetypes = (servers[server_name] or {}).filetypes,
     }
+  end,
+  ["rust_analyzer"] = function()
   end
 }
+
+mason_lspconfig.setup_handlers(handlers)
+-- mason_lspconfig.setup_handlers { {
+--   function(server_name)
+--     require('lspconfig')[server_name].setup {
+--       capabilities = capabilities,
+--       on_attach = on_attach,
+--       settings = servers[server_name],
+--       filetypes = (servers[server_name] or {}).filetypes,
+--     }
+--   end,
+--   ["rust_analyzer"] = function()
+--   end
+-- } }
 
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
