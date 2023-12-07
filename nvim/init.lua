@@ -518,7 +518,9 @@ local handlers = {
     }
   end,
   ["rust_analyzer"] = function()
-  end
+  end,
+  ["jdtls"] = function()
+  end,
 }
 
 mason_lspconfig.setup_handlers(handlers)
