@@ -1,6 +1,7 @@
 return {
 	'simrat39/rust-tools.nvim',
 	dependencies = { 'neovim/nvim-lspconfig', 'mfussenegger/nvim-dap', 'williamboman/mason.nvim' },
+	ft = { "rust" },
 	config = function()
 		local rt = require("rust-tools")
 		local util = require("util")
