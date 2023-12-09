@@ -202,6 +202,7 @@ require('lazy').setup({
           return vim.fn.executable 'make' == 1
         end,
       },
+      'nvim-telescope/telescope-ui-select.nvim',
     },
   },
 
@@ -230,6 +231,8 @@ require('lazy').setup({
   { import = 'local' },
 }, {})
 
+require('core.settings')
+require('core.keymaps')
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
@@ -242,10 +245,16 @@ require('telescope').setup {
       },
     },
   },
+  extensions = {
+    ['ui-select'] = {
+      require('telescope.themes').get_dropdown({})
+    },
+  },
 }
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
+pcall(require('telescope').load_extension, 'ui-select')
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
@@ -387,18 +396,6 @@ local handlers = {
 }
 
 mason_lspconfig.setup_handlers(handlers)
--- mason_lspconfig.setup_handlers { {
---   function(server_name)
---     require('lspconfig')[server_name].setup {
---       capabilities = capabilities,
---       on_attach = on_attach,
---       settings = servers[server_name],
---       filetypes = (servers[server_name] or {}).filetypes,
---     }
---   end,
---   ["rust_analyzer"] = function()
---   end
--- } }
 
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
