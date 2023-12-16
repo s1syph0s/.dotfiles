@@ -463,6 +463,9 @@ cmp.setup {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
   },
+  experimental = {
+    ghost_text = true,
+  },
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
