@@ -453,7 +453,15 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<C-Space>'] = cmp.mapping.complete {},
+    ['<C-Space>'] = cmp.mapping(function(fallback)
+      if not cmp.visible() then
+        cmp.complete()
+      elseif cmp.visible() then
+        cmp.close()
+      else
+        fallback()
+      end
+    end, {'i'}),
     ['<C-y>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
