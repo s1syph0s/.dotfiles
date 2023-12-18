@@ -7,6 +7,7 @@ return {
 			formatters_by_ft = {
 				lua = { "stylua" },
 				rust = { "rustfmt" },
+				java = { "google-java-format" },
 			},
 		}
 		require("conform").setup(opts)
