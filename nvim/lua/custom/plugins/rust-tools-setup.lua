@@ -12,7 +12,7 @@ return {
 
 		local mason_registry = require("mason-registry")
 		local codelldb = mason_registry.get_package("codelldb") -- note that this will error if you provide a non-existent package name
-		codelldb:get_install_path()                           -- returns a string like "/home/user/.local/share/nvim/mason/packages/codelldb"
+		-- codelldb:get_install_path()                           -- returns a string like "/home/user/.local/share/nvim/mason/packages/codelldb"
 
 		local extension_path = codelldb:get_install_path() .. "/extension/"
 		local codelldb_path = extension_path .. "adapter/codelldb"
