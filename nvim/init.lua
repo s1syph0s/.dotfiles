@@ -142,12 +142,23 @@ require('lazy').setup({
     },
   },
 
+  -- Theme, pick one
   {
     -- Theme inspired by Atom
     'navarasu/onedark.nvim',
     priority = 1000,
+    -- config = function()
+    --   vim.cmd.colorscheme 'onedark'
+    -- end,
+  },
+
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
     config = function()
-      vim.cmd.colorscheme 'onedark'
+      vim.cmd.colorscheme 'tokyonight'
     end,
   },
 
@@ -157,9 +168,10 @@ require('lazy').setup({
     -- See `:help lualine.txt`
     opts = {
       options = {
-        icons_enabled = false,
-        theme = 'onedark',
-        component_separators = '|',
+        icons_enabled = true,
+        theme = 'auto',
+        component_separators = { left = '', right = ''},
+        -- component_separators = '|',
         section_separators = '',
       },
     },
@@ -433,15 +445,25 @@ cmp.setup {
     end,
   },
   mapping = cmp.mapping.preset.insert {
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete {},
-    ['<C-y>'] = cmp.mapping.confirm {
+    -- ['<C-n>'] = cmp.mapping.select_next_item(),
+    -- ['<C-p>'] = cmp.mapping.select_prev_item(),
+    -- ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-n>'] = cmp.mapping.scroll_docs(4),
+    ['<C-p>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
+    ['<C-Space>'] = cmp.mapping(function(fallback)
+      if not cmp.visible() then
+        cmp.complete()
+      elseif cmp.visible() then
+        cmp.close()
+      else
+        fallback()
+      end
+    end, {'i'}),
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -464,6 +486,10 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'path' },
+  },
+  experimental = {
+    ghost_text = true,
   },
 }
 

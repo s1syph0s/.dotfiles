@@ -9,7 +9,8 @@ vim.keymap.set({ 'n', 'v', 'i' }, '<C-y>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Gigachad keymap
+-- Gigachad keymaps
+vim.keymap.set('x', '<leader>p', '"_dP', { desc = 'Paste without overwriting buffer' })
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
 -- Diagnostic keymaps
