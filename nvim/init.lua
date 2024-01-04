@@ -157,8 +157,16 @@ require('lazy').setup({
     lazy = false,
     priority = 1000,
     opts = {},
+    -- config = function()
+    --   vim.cmd.colorscheme 'tokyonight'
+    -- end,
+  },
+
+  {
+    'rebelot/kanagawa.nvim',
+    priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'tokyonight'
+      vim.cmd.colorscheme 'kanagawa'
     end,
   },
 
@@ -223,6 +231,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
+      'nvim-treesitter/nvim-treesitter-context',
     },
     build = ':TSUpdate',
   },
