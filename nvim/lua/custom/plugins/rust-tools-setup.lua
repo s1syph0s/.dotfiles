@@ -4,11 +4,6 @@ return {
 	ft = { "rust" },
 	config = function()
 		local rt = require("rust-tools")
-		local util = require("util")
-
-		local on_attach = function(_, bufnr)
-			util.on_attach(_, bufnr)
-		end
 
 		local mason_registry = require("mason-registry")
 		local codelldb = mason_registry.get_package("codelldb") -- note that this will error if you provide a non-existent package name
@@ -185,7 +180,6 @@ return {
 				-- standalone file support
 				-- setting it to false may improve startup time
 				standalone = true,
-				on_attach = on_attach,
 			}, -- rust-analyzer options
 
 			-- debugging stuff
